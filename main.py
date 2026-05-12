@@ -12,8 +12,10 @@ def main():
     camera_pos_x = 0
     camera_pos_y = 0
     saved_states = LinkedList()
+    saved_times = LinkedList()
     once_pressed = False
     button_count = 0
+    t = 0
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -22,14 +24,20 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     x, y = event.pos
-                    print(f"Clic izquierdo en: {x}, {y}")
-                    if 56 <= x <= 323 and 37 <= y <= 168:
+                    if 55 <= x <= 324 and 37 <= y <= 168:
                         if once_pressed:
                             button_count += 1
                         once_pressed = True
                         saved_states.insert([camera_pos_x, camera_pos_y])
+                        saved_times.insert(t)
                         camera_pos_x += 2
                         t = 0
+                    elif 55 <= x <= 324 and 197 <= y <= 332:
+                        if once_pressed and button_count > 0:
+                            button_count -= 1
+                            t = saved_times.tail.node_data
+                            saved_states.delete()
+                            saved_times.delete()
         glClearColor(0.2, 0.3, 0.3, 1.0)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         generateCircle(camera_pos_x - camera_pos_x, camera_pos_y - camera_pos_y, 360, 0.2)
