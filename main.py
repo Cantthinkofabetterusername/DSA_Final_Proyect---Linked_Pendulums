@@ -29,7 +29,7 @@ def main():
                         once_pressed = True
                         saved_states.insert([camera_pos_x, camera_pos_y])
                         camera_pos_x += 2
-                        camera_pos_y = math.cos(button_count)
+                        t = 0
         glClearColor(0.2, 0.3, 0.3, 1.0)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         generateCircle(camera_pos_x - camera_pos_x, camera_pos_y - camera_pos_y, 360, 0.2)
@@ -44,6 +44,10 @@ def main():
                 generateCircle(current_node.next.node_data[0] - camera_pos_x, current_node.next.node_data[1] - camera_pos_y, 360, 0.2)
                 generateLine(current_node.node_data[0] - camera_pos_x, current_node.node_data[1] - camera_pos_y, current_node.next.node_data[0] - camera_pos_x, current_node.next.node_data[1] - camera_pos_y)
                 current_node = current_node.next
+            angle = (math.pi / 2) * math.e**(-0.1 * t) * math.cos(math.sqrt(4.89) * t)
+            t += 0.01
+            camera_pos_x = 2 * math.sin(angle) + saved_states.tail.node_data[0]
+            camera_pos_y = -2 * math.cos(angle) + saved_states.tail.node_data[1]
         generateButton(camera_pos_x - 2.5 - camera_pos_x, camera_pos_y + 1.7 - camera_pos_y, 0.5, 1, 0, 0, 0.8)
         generateButton(camera_pos_x - 2.5 - camera_pos_x, camera_pos_y + 1.1 - camera_pos_y, 0.5, 1, 0, 0.8, 0.8)
         generateButton(camera_pos_x - 2.5 - camera_pos_x, camera_pos_y + 0.5 - camera_pos_y, 0.5, 1, 0, 0.8, 0)
