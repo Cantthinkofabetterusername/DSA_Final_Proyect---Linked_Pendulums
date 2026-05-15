@@ -7,11 +7,11 @@ La estructura de datos que se implementó fue la Circular Doubly Linked List, cu
 | Método | Complejidad |
 | --- | --- |
 | insert(data) | O(1) |
-| delete() | 0(1) |
-| circulify() | 0(1) |
-| traverse() | 0(n) |
-| move_next() | 0(1) |
-| move_prev() | 0(1) |
+| delete() | O(1) |
+| circulify() | O(1) |
+| traverse() | O(n) |
+| move_next() | O(1) |
+| move_prev() | O(1) |
 
 Como se puede observar, casi todos los métodos son constantes. Esto se debe a que se añadió una pequeña optimización no vista en clase, que consiste de un puntero "tail" que apunta siempre al último elemento de una LL, lo que permite que se pueda insertar, eliminar o convertir en una lista circular sin necesidad de recorrer toda la lista. Cabe aclarar que los métodos insert(data) y delete() siempre afectan al último nodo de una lista ya que así lo amerita el proyecto. Se añadieron métodos que yo mismo inventé llamados circulify(), move_next() y move_prev(). Circulify() convierte a la lista en circular, move_next() y move_prev() como sugieren sus nombres permite movernos entre nodos siempre y cuando la lista sea circular y haya sido recorrida. Estos últimos dos métodos tienen una particularidad, y es que aunque casi siempre tienen una complejidad constante, la primera vez que se usa una de estas dos tiene una complejidad lineal ya que llama a la función traverse().
 
@@ -20,7 +20,7 @@ Aparte de estos métodos, también se usaron algoritmos de renderizado que valen
 | Método | Complejidad |
 | --- | --- |
 | generateCircle(segments) | O(n) |
-| generateButton() | 0(1) |
-| generateLine() | 0(1) |
+| generateButton() | O(1) |
+| generateLine() | O(1) |
 
 Por último, para clonar el repositorio solo hay que ejecutar el comando git clone con la SSH key, y para ejecutar el programa solo se ejecuta el archivo main.py. Para usarlo, hay que tener en cuenta lo siguiente: el botón azul lo que hace es insertar péndulos, el botón cian elimina el último péndulo y el botón verde convierte la lista en circular, tirando hacia dos botones que se usan solo para moverse entre los nodos.
